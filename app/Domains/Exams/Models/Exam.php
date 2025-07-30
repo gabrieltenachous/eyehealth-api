@@ -5,9 +5,10 @@ namespace Domains\Exams\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Domains\Exams\Models\Package;
+use Domains\Packages\Models\Package;
 use App\Enums\Laterality;
 use App\Enums\ExamGroup;
+use Database\Factories\ExamFactory;
 
 class Exam extends Model
 {
@@ -31,5 +32,9 @@ class Exam extends Model
     public function packages()
     {
         return $this->belongsToMany(Package::class, 'exam_package');
+    }
+    protected static function newFactory()
+    {
+        return ExamFactory::new();
     }
 }

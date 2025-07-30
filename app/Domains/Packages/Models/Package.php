@@ -2,6 +2,8 @@
 
 namespace Domains\Packages\Models;
 
+use Database\Factories\ExamFactory;
+use Database\Factories\PackageFactory;
 use Domains\Exams\Models\Exam;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -19,5 +21,9 @@ class Package extends Model
     public function exams()
     {
         return $this->belongsToMany(Exam::class, 'exam_package');
+    }
+    protected static function newFactory()
+    {
+        return PackageFactory::new();
     }
 }
