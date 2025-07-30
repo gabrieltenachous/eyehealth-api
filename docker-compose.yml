@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/php-fpm.Dockerfile
+    container_name: php-fpm
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
+    depends_on:
+      - mysql
+
+  nginx:
+    build:
+      context: .
+      dockerfile: .docker/nginx.Dockerfile
+    container_name: nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: eyehealth
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
