@@ -1,11 +1,11 @@
 <?php
 
-namespace Domains\Exams\Models;
+namespace Domains\Packages\Models;
 
+use Domains\Exams\Models\Exam;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Domains\Exams\Models\Exam;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 class Package extends Model
 {

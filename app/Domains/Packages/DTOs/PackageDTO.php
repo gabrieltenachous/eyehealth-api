@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exams\DTOs;
+namespace Domains\Packages\DTOs;
 
 class PackageDTO
 {

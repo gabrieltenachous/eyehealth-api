@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Package\Resources;
+namespace Domains\Packages\Resources;
 
 class PackageResource
 {

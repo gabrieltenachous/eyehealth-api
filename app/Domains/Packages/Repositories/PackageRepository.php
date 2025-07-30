@@ -1,8 +1,8 @@
 <?php
 
-namespace Domains\Exams\Repositories;
+namespace Domains\Packages\Repositories;
 
-use Domains\Exams\Models\Package;
+use Domains\Packages\Models\Package;
 
 class PackageRepository
 {
