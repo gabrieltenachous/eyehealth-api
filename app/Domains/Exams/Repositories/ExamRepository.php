@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exam\Repositories;
+namespace Domains\Exams\Repositories;
 
 class ExamRepository
 {

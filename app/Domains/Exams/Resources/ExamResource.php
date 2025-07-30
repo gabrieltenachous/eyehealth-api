@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exam\Resources;
+namespace Domains\Exams\Resources;
 
 class ExamResource
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exam\DTOs;
+namespace Domains\Exams\DTOs;
 
 use App\Enums\ExamGroup;
 use App\Enums\Laterality;

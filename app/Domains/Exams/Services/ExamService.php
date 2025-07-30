@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exam\Services;
+namespace Domains\Exams\Services;
 
 class ExamService
 {

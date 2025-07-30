@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exam\Actions;
+namespace Domains\Exams\Actions;
 
 class ExamAction
 {

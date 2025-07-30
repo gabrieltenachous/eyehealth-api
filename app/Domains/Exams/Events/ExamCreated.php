@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Exam\Events;
+namespace Domains\Exams\Events;
 
 class ExamCreated
 {
