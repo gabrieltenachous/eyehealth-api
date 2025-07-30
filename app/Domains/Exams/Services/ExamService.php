@@ -7,12 +7,21 @@ use Domains\Exams\Events\ExamCreated;
 use Domains\Exams\Repositories\ExamRepository;
 use Domains\Exams\Resources\ExamResource;
 
+/**
+* Service responsible for the Exams business rules.
+*/
 class ExamService
 {
     public function __construct(
         protected ExamRepository $repository
     ) {}
 
+    /**
+     * Creates a new exam.
+     *
+     * @param ExamDTO $dto
+     * @return ExamResource
+     */
     public function store(ExamDTO $dto): ExamResource
     {
         $exam = $this->repository->store([
@@ -25,6 +34,11 @@ class ExamService
         return new ExamResource($exam);
     }
 
+    /**
+     * List all exams.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index()
     {
         return ExamResource::collection($this->repository->all());
