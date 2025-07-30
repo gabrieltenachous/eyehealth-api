@@ -7,10 +7,12 @@ use App\Enums\Laterality;
 use Domains\Exams\DTOs\ExamDTO;
 use Domains\Exams\Repositories\ExamRepository;
 use Domains\Exams\Services\ExamService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExamServiceTest extends TestCase
 {
+    use RefreshDatabase; 
     public function test_store_exam()
     {
         $repository = new ExamRepository;

@@ -15,13 +15,6 @@ class PackageSeeder extends Seeder
 
         Package::factory()
             ->count(3)
-            ->create()
-            ->each(function ($package) use ($exams) {
-                $package->exams()->syncWithoutDetaching(
-                    collect($exams)->mapWithKeys(fn ($examId) => [
-                        $examId => ['id' => Str::uuid()],
-                    ])->toArray()
-                );
-            });
+            ->create();
     }
 }

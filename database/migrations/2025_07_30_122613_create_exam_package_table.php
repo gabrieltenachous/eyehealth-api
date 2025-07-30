@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('exam_package', function (Blueprint $table) {
-            $table->uuid('id')->primary();
             $table->uuid('exam_id');
             $table->uuid('package_id');
             $table->timestamps();
 
+            $table->primary(['exam_id', 'package_id']);
+
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
-
-            $table->unique(['exam_id', 'package_id']);
         });
+
     }
 
     /**
