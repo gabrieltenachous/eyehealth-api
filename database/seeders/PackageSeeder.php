@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Domains\Packages\Models\Package;
 use Domains\Exams\Models\Exam;
-use Str; 
+use Domains\Packages\Models\Package;
+use Illuminate\Database\Seeder;
+use Str;
 
 class PackageSeeder extends Seeder
 {

@@ -12,7 +12,7 @@ class PackageFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Pacote - ' . $this->faker->word(),
+            'name' => 'Pacote - '.$this->faker->word(),
         ];
     }
 }

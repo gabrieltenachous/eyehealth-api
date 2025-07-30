@@ -14,8 +14,8 @@ class StorePackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'   => ['required', 'string'],
-            'exams'  => ['required', 'array'],
+            'name' => ['required', 'string'],
+            'exams' => ['required', 'array'],
             'exams.*' => ['uuid', 'exists:exams,id'],
         ];
     }

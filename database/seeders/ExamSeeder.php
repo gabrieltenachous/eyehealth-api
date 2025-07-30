@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Domains\Exams\Models\Exam;
+use Illuminate\Database\Seeder;
 
 class ExamSeeder extends Seeder
 {

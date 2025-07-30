@@ -15,7 +15,7 @@ class PackageService
     public function store(PackageDTO $dto): PackageResource
     {
         $package = $this->repository->store([
-            'name' => $dto->name
+            'name' => $dto->name,
         ]);
 
         $package->exams()->attach($dto->exams);

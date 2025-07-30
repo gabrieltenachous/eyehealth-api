@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 use App\Enums\ExamGroup;
 use App\Enums\Laterality;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreExamRequest extends FormRequest
 {
@@ -17,10 +17,10 @@ class StoreExamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'       => ['required', 'string'],
-            'comment'    => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'comment' => ['required', 'string'],
             'laterality' => ['nullable', new Enum(Laterality::class)],
-            'group'      => ['required', new Enum(ExamGroup::class)],
+            'group' => ['required', new Enum(ExamGroup::class)],
         ];
     }
 }

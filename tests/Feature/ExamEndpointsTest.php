@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use App\Enums\ExamGroup;
 use App\Enums\Laterality;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ExamEndpointsTest extends TestCase
 {
@@ -27,7 +27,7 @@ class ExamEndpointsTest extends TestCase
         ]);
 
         $response->assertCreated()
-                 ->assertJsonStructure(['data' => ['id', 'name', 'comment', 'laterality', 'group']]);
+            ->assertJsonStructure(['data' => ['id', 'name', 'comment', 'laterality', 'group']]);
     }
 
     public function test_can_list_exams()

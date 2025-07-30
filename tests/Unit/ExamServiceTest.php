@@ -2,18 +2,18 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use Domains\Exams\Services\ExamService;
-use Domains\Exams\Repositories\ExamRepository;
-use Domains\Exams\DTOs\ExamDTO;
-use App\Enums\Laterality;
 use App\Enums\ExamGroup;
+use App\Enums\Laterality;
+use Domains\Exams\DTOs\ExamDTO;
+use Domains\Exams\Repositories\ExamRepository;
+use Domains\Exams\Services\ExamService;
+use Tests\TestCase;
 
 class ExamServiceTest extends TestCase
 {
     public function test_store_exam()
     {
-        $repository = new ExamRepository();
+        $repository = new ExamRepository;
         $service = new ExamService($repository);
 
         $dto = new ExamDTO(

@@ -9,19 +9,11 @@ use Domains\Exams\Models\Exam;
  */
 class ExamRepository
 {
-    /**
-     * @param array $data
-     * @return Exam
-     */
     public function store(array $data): Exam
     {
         return Exam::create($data);
     }
 
-    /**
-     * @param string $id
-     * @return Exam|null
-     */
     public function find(string $id): ?Exam
     {
         return Exam::find($id);

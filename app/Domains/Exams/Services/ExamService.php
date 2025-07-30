@@ -8,8 +8,8 @@ use Domains\Exams\Repositories\ExamRepository;
 use Domains\Exams\Resources\ExamResource;
 
 /**
-* Service responsible for the Exams business rules.
-*/
+ * Service responsible for the Exams business rules.
+ */
 class ExamService
 {
     public function __construct(
@@ -18,19 +18,17 @@ class ExamService
 
     /**
      * Creates a new exam.
-     *
-     * @param ExamDTO $dto
-     * @return ExamResource
      */
     public function store(ExamDTO $dto): ExamResource
     {
         $exam = $this->repository->store([
-            'name'       => $dto->name,
-            'comment'    => $dto->comment,
+            'name' => $dto->name,
+            'comment' => $dto->comment,
             'laterality' => $dto->laterality,
-            'group'      => $dto->group,
+            'group' => $dto->group,
         ]);
         event(new ExamCreated($exam));
+
         return new ExamResource($exam);
     }
 

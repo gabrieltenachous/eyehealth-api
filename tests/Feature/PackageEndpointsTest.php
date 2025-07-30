@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use Domains\Exams\Models\Exam;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Domains\Exams\Models\Exam;
 
 class PackageEndpointsTest extends TestCase
 {
@@ -26,7 +26,7 @@ class PackageEndpointsTest extends TestCase
         ]);
 
         $response->assertCreated()
-                 ->assertJsonStructure(['data' => ['id', 'name', 'exams']]);
+            ->assertJsonStructure(['data' => ['id', 'name', 'exams']]);
     }
 
     public function test_can_list_packages()

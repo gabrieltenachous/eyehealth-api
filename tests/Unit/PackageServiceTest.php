@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Domains\Exams\Models\Exam;
-use Domains\Packages\Services\PackageService;
-use Domains\Packages\Repositories\PackageRepository;
 use Domains\Packages\DTOs\PackageDTO;
+use Domains\Packages\Repositories\PackageRepository;
+use Domains\Packages\Services\PackageService;
+use Tests\TestCase;
 
 class PackageServiceTest extends TestCase
 {
@@ -14,7 +14,7 @@ class PackageServiceTest extends TestCase
     {
         $exam = Exam::factory()->create();
 
-        $repository = new PackageRepository();
+        $repository = new PackageRepository;
         $service = new PackageService($repository);
 
         $dto = new PackageDTO(name: 'Pré-operatório', exams: [$exam->id]);
