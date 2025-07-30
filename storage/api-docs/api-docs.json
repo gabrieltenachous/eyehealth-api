@@ -1,0 +1,178 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Eyehealth API",
+        "description": "Documentation API Eyehealth.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/exams": {
+            "get": {
+                "tags": [
+                    "Exams"
+                ],
+                "summary": "Listar exames",
+                "operationId": "035be3652cf51d7122f3efbc897dbd2b",
+                "responses": {
+                    "200": {
+                        "description": "Lista de exames"
+                    }
+                },
+                "security": [
+                    {
+                        "apiToken": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Exams"
+                ],
+                "summary": "Criar novo exame",
+                "operationId": "d3227d0d1e2ce3ea50ddb2d8487af184",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "group",
+                                    "comment"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Campimetria"
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Exame de campo visual"
+                                    },
+                                    "laterality": {
+                                        "type": "string",
+                                        "enum": [
+                                            "OD",
+                                            "OE",
+                                            "AO"
+                                        ],
+                                        "example": "OD"
+                                    },
+                                    "group": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Individual",
+                                            "Grupo1",
+                                            "Grupo2",
+                                            "Grupo3"
+                                        ],
+                                        "example": "Grupo1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Exame criado"
+                    }
+                },
+                "security": [
+                    {
+                        "apiToken": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/packages": {
+            "get": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Listar pacotes",
+                "operationId": "ff1821611ebc335f515e282a111161fd",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pacotes"
+                    }
+                },
+                "security": [
+                    {
+                        "apiToken": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Criar novo pacote",
+                "operationId": "5aa46ac7bcaf97815608097ee361e860",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "exams"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Pré-operatório"
+                                    },
+                                    "exams": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pacote criado"
+                    }
+                },
+                "security": [
+                    {
+                        "apiToken": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiToken": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Exams",
+            "description": "Exams"
+        },
+        {
+            "name": "Packages",
+            "description": "Packages"
+        }
+    ]
+}

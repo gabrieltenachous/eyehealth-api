@@ -12,12 +12,43 @@ class PackageController extends Controller
     public function __construct(
         protected ServicesPackageService $service
     ) {}
-
+    /**
+     * @OA\Get(
+     *     path="/api/v1/packages",
+     *     security={{"apiToken":{}}},
+     *     tags={"Packages"},
+     *     summary="Listar pacotes",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Lista de pacotes"
+     *     )
+     * )
+     */
     public function index()
     {
         return $this->service->index();
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/v1/packages",
+     *     security={{"apiToken":{}}},
+     *     tags={"Packages"},
+     *     summary="Criar novo pacote",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name", "exams"},
+     *             @OA\Property(property="name", type="string", example="Pré-operatório"),
+     *             @OA\Property(property="exams", type="array", @OA\Items(type="string", format="uuid"))
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Pacote criado"
+     *     )
+     * )
+     */
     public function store(StorePackageRequest $request)
     {
         $dto = new PackageDTO(
