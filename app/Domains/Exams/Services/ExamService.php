@@ -3,6 +3,7 @@
 namespace Domains\Exams\Services;
 
 use Domains\Exams\DTOs\ExamDTO;
+use Domains\Exams\Events\ExamCreated;
 use Domains\Exams\Repositories\ExamRepository;
 use Domains\Exams\Resources\ExamResource;
 
@@ -20,7 +21,7 @@ class ExamService
             'laterality' => $dto->laterality,
             'group'      => $dto->group,
         ]);
-
+        event(new ExamCreated($exam));
         return new ExamResource($exam);
     }
 
