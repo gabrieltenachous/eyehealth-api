@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePackageRequest;
+use App\Http\Requests\StorePdfPackageRequest;
 use Domains\Packages\DTOs\PackageDTO;
 use Domains\Packages\Services\PackageService as ServicesPackageService;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PackageController extends Controller
 {
@@ -63,5 +65,15 @@ class PackageController extends Controller
         );
 
         return $this->service->store($dto);
+    }
+
+    public function generatePdf(StorePdfPackageRequest $request)
+    {
+        $exams = $request->validated('exams');
+        $grouped = array_chunk($exams, 4);
+
+        $pdf = Pdf::loadView('pdf.exams', ['pages' => $grouped]);
+
+        return $pdf->download('exames.pdf');
     }
 }

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\ExamGroup;
+use App\Enums\Laterality;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBulkExamRequest;
 use App\Http\Requests\StoreExamRequest;
 use Domains\Exams\DTOs\ExamDTO;
+use Domains\Exams\Resources\ExamResource;
 use Domains\Exams\Services\ExamService;
 
 class ExamController extends Controller
@@ -68,4 +72,20 @@ class ExamController extends Controller
 
         return $this->service->store($dto);
     }
+
+    public function bulkStore(StoreBulkExamRequest $request)
+    {
+        $exams = collect($request->validated('exams'))
+            ->map(function (array $data) {
+                return $this->service->store(new ExamDTO(
+                    name: $data['name'],
+                    laterality: isset($data['laterality']) ? Laterality::from($data['laterality']) : null,
+                    comment: $data['comment'] ?? '',
+                    group: ExamGroup::from($data['group']),
+                ));
+            });
+
+        return ExamResource::collection($exams);
+    }
+
 }
