@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2-cli
 
 # Instala dependências
 RUN apt-get update && apt-get install -y \
@@ -13,10 +13,12 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libpq-dev \
     libjpeg-dev \
-    libfreetype6-dev
+    libfreetype6-dev \
+    mysql-client \
+    libcurl4-openssl-dev
 
 # Instala extensões PHP
-RUN docker-php-ext-install pdo pdo_mysql zip exif pcntl
+RUN docker-php-ext-install pdo pdo_mysql zip exif pcntl bcmath
 
 # Instala Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -24,16 +26,18 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Define diretório de trabalho
 WORKDIR /var/www
 
-# Copia os arquivos
+# Copia os arquivos do projeto
 COPY . .
 
 # Instala dependências do Laravel
 RUN composer install --optimize-autoloader --no-dev
 
-# Permissões
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Permissões necessárias
+RUN chmod -R 775 storage bootstrap/cache \
+    && chown -R www-data:www-data .
 
-# Porta padrão do PHP-FPM
+# Porta padrão
 EXPOSE 8000
 
-CMD php artisan serve --host=0.0.0.0 --port=8000
+# Start Laravel
+CMD php artisan ser
